@@ -1,0 +1,15 @@
+<header>
+  <!-- Seu menu e header aqui, use seu HTML/CSS do projeto original -->
+  <nav>
+    <a href="/">Início</a>
+    <a href="/games">Jogos</a>
+    <% if (usuario) { %>
+      <a href="/games/favoritos">Favoritos</a>
+      <a href="/user/perfil">Perfil</a>
+      <a href="/auth/logout">Sair</a>
+    <% } else { %>
+      <a href="/auth/login">Entrar</a>
+      <a href="/auth/cadastro">Cadastrar</a>
+    <% } %>
+  </nav>
+</header>

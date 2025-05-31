@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Jogos | GameVault</title>
+    <link rel="stylesheet" href="/public/css/estilo.css">
+</head>
+<body>
+<%- include('partials/header', { usuario }) %>
+<div class="container">
+    <h2>Jogos</h2>
+    <form method="GET" action="/games">
+        <select name="genero">
+            <option value="">Todos os Gêneros</option>
+            <% categorias.forEach(function(genero) { %>
+                <option value="<%= genero %>"><%= genero %></option>
+            <% }) %>
+        </select>
+        <input type="number" name="ano" placeholder="Ano de Lançamento">
+        <input type="number" name="nota" min="1" max="10" placeholder="Nota Mínima">
+        <input type="text" name="busca" placeholder="Buscar por nome">
+        <button type="submit">Filtrar</button>
+    </form>
+    <div class="lista-jogos">
+        <% jogos.forEach(function(jogo) { %>
+            <div class="jogo-card">
+                <img src="/public/images/<%= jogo.JOG_IMG || 'padrao.png' %>" alt="Capa do jogo">
+                <h3><%= jogo.JOG_NOME %></h3>
+                <p><%= jogo.JOG_DESC %></p>
+                <p>Nota média: <%= jogo.media.toFixed(2) %></p>
+                <form method="POST" action="/games/favoritos/<%= jogo.JOG_COD %>">
+                    <button type="submit">
+                        <% if (usuario) { %>
+                            Favoritar
+                        <% } else { %>
+                            <a href="/auth/login">Entrar para favoritar</a>
+                        <% } %>
+                    </button>
+                </form>
+            </div>
+        <% }) %>
+    </div>
+</div>
+<%- include('partials/footer') %>
+</body>
+</html>

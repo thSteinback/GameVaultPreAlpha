@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Meu Perfil | GameVault</title>
+    <link rel="stylesheet" href="/public/css/estilo.css">
+</head>
+<body>
+<%- include('partials/header', { usuario }) %>
+<div class="perfil-bloco-unico">
+    <h2>Meu Perfil</h2>
+    <div>
+        <img src="/uploads/<%= usuario.USU_AVATAR ? usuario.USU_AVATAR : 'default.png' %>" alt="Avatar" class="avatar">
+        <form action="/user/perfil/avatar" method="POST" enctype="multipart/form-data">
+            <input type="file" name="avatar" accept="image/*">
+            <button type="submit">Alterar Avatar</button>
+        </form>
+    </div>
+    <div>
+        <img src="/uploads/<%= usuario.USU_BANNER ? usuario.USU_BANNER : 'banner_default.png' %>" alt="Banner" class="banner">
+        <form action="/user/perfil/banner" method="POST" enctype="multipart/form-data">
+            <input type="file" name="banner" accept="image/*">
+            <button type="submit">Alterar Banner</button>
+        </form>
+    </div>
+    <p>Nome: <%= usuario.USU_NOME %></p>
+    <p>Email: <%= usuario.USU_EMAIL %></p>
+    <p>Membro desde: <%= usuario.USU_DATA_CRIACAO.toLocaleDateString('pt-BR') %></p>
+</div>
+<%- include('partials/footer') %>
+</body>
+</html>

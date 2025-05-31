@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Perfil do Usuário | GameVault</title>
+    <link rel="stylesheet" href="/public/css/estilo.css">
+</head>
+<body>
+<%- include('partials/header', { usuario }) %>
+<div class="perfil-bloco-unico">
+    <h2>Perfil de <%= usuario.USU_NOME %></h2>
+    <img src="/uploads/<%= usuario.USU_AVATAR ? usuario.USU_AVATAR : 'default.png' %>" alt="Avatar" class="avatar">
+    <img src="/uploads/<%= usuario.USU_BANNER ? usuario.USU_BANNER : 'banner_default.png' %>" alt="Banner" class="banner">
+    <p>Email: <%= usuario.USU_EMAIL %></p>
+    <p>Membro desde: <%= usuario.USU_DATA_CRIACAO.toLocaleDateString('pt-BR') %></p>
+    <p>Curtidas: <%= curtidas %></p>
+    <p>Comentários: <%= comentarios %></p>
+    <p>Avaliações: <%= avaliacoes %></p>
+</div>
+<%- include('partials/footer') %>
+</body>
+</html>

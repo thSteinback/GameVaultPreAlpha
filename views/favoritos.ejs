@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Favoritos | GameVault</title>
+    <link rel="stylesheet" href="/public/css/estilo.css">
+</head>
+<body>
+<%- include('partials/header', { usuario }) %>
+<div class="container">
+    <h2>Seus Jogos Favoritos</h2>
+    <div class="lista-jogos">
+        <% jogos.forEach(function(jogo) { %>
+            <div class="jogo-card">
+                <img src="/public/images/<%= jogo.JOG_IMG || 'padrao.png' %>" alt="Capa do jogo">
+                <h3><%= jogo.JOG_NOME %></h3>
+                <p><%= jogo.JOG_DESC %></p>
+            </div>
+        <% }) %>
+    </div>
+</div>
+<%- include('partials/footer') %>
+</body>
+</html>
